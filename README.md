@@ -1,0 +1,1 @@
+# junos_auto_bgp_bandwidth_communitites
