@@ -12,8 +12,6 @@ import sys
 import argparse
 
 '''
-Copyright 2018 Juniper Networks
-Script Name: monitor_ae_bw_auto.py 
 Version: 2.0
 Description:
     Event based script that updates bw bgp communities based on AE link speed changes.
