@@ -1,6 +1,6 @@
 # Description:
     Event based script that updates bgp bw communities dynamically when LAG link speed changes.
-Requirements:
+# Requirements:
     - Junos 16.1+ (python).
     - First term of the import policy MUST delete all other bw communities (residue that neighbor might send and that could break UCMP).
       This is done by defining a wildcard all_bw_communities with members bandwidth:*:* and deleting it in the first policy       .
@@ -9,14 +9,14 @@ Requirements:
     - Single hop BGP sessions (routing policy "from neighbor" creates the bw community context).
     - Debug should be disabled once tested.
     - BW communities should be set or added depending on case. CAUTION not to disturb other communities.
-How it works:
+# How it works:
     Event monitors <Bandwidth> events around ae IFDs (ignores IFL events) and calls the python script.
     The script uses the event and configured arguments as input.
     It checks the speed of the interface and converts it into community value.
     If IFL.0 or IFD description matches provided regex, script continues. Otherwise, it exits.
     The script then updates bgp bandwidth community name prefix+AE-IFD to current AE speed in Bps into dynamic database.
     Operator needs to use the community name into neighbor or group import policy (per case).
-Notes:
+# Notes:
     Requirement is that bw community uses bytes per second, but the range [0-4294967295] is not enough, 
     so the bw community value will be divided by 1000 (KB/s instead of B/s).
     Junos treats Link Bandwidth BGP community is a TRANSITIVE NLRI attribute, so export policies need to
@@ -34,11 +34,11 @@ Notes:
     <and so on>
     set protocols bgp group IBGP export nhs
 
-**** IMPLEMENTATION STEP 1 ****
+# IMPLEMENTATION STEP 1 
 Copy this file to /var/db/scripts/event/ on both routing engines unless the "scripts synchronize" and "commit synchronize
 are used.
 
-**** IMPLEMENTATION STEP 2 ****
+# IMPLEMENTATION STEP 2 
 event-options {
     policy AE-BW-MON-AUTO {
         events SYSTEM;
@@ -81,7 +81,7 @@ system {
 }
 ************************
 
-**** IMPLEMENTATION STEP 3 ****
+# IMPLEMENTATION STEP 3 
          ----ae0---
         /          \
  JUNOS                BGP NEighbor
@@ -114,7 +114,7 @@ set policy-options community bw_community_ae1 members bandwidth:10001:250000
 
 ************************
 
-**** RESULT ****
+# RESULT 
 [edit]
 amanescu@RE0-test# run show route 10.0.0.1 extensive | match balance
                 Next hop: 1.1.0.1 via ae0.0 balance 25%
