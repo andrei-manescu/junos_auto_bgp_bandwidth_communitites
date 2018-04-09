@@ -1,5 +1,4 @@
-Version: 2.1
-Description:
+# Description:
     Event based script that updates bgp bw communities dynamically when LAG link speed changes.
 Requirements:
     - Junos 16.1+ (python).
