@@ -1,5 +1,5 @@
 # Description:
-    JUNOS Event based script that updates bgp bw communities dynamically when LAG link speed changes.
+    JUNOS Event based script that updates bgp bw communities dynamically when LAG link speed changes. From Juniper documentation: https://www.juniper.net/documentation/en_US/junos/topics/example/bgp-multipath-unequal.html
 # Requirements:
     - Junos 16.1+ (python).
     - First term of the import policy MUST delete all other bw communities (residue that neighbor might send and that could break UCMP).
