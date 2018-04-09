@@ -18,7 +18,7 @@
     Operator needs to use the community name into neighbor or group import policy (per case).
 # Notes:
     Bw community uses bytes per second, but the range [0-4294967295] is not enough, 
-    so the bw community value will be divided by 1000 (KB/s instead of B/s).
+    so the bw community value will be divided by 1000 (~KB/s instead of B/s).
     Junos treats Link Bandwidth BGP community is a TRANSITIVE NLRI attribute, so export policies need to
     be adjusted to remove the bw communities before sending them off to peers (to avoid UCMP downstream).
     In order to change link-bw-community to non-transitive, following steps are required:
