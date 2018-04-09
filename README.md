@@ -17,7 +17,7 @@
     The script then updates bgp bandwidth community name prefix+AE-IFD to current AE speed in Bps into dynamic database.
     Operator needs to use the community name into neighbor or group import policy (per case).
 # Notes:
-    Requirement is that bw community uses bytes per second, but the range [0-4294967295] is not enough, 
+    Bw community uses bytes per second, but the range [0-4294967295] is not enough, 
     so the bw community value will be divided by 1000 (KB/s instead of B/s).
     Junos treats Link Bandwidth BGP community is a TRANSITIVE NLRI attribute, so export policies need to
     be adjusted to remove the bw communities before sending them off to peers (to avoid UCMP downstream).
@@ -35,7 +35,7 @@
     set protocols bgp group IBGP export nhs
 
 # IMPLEMENTATION STEP 1 
-Copy this file to /var/db/scripts/event/ on both routing engines unless the "scripts synchronize" and "commit synchronize
+    Copy this file to /var/db/scripts/event/ on both routing engines unless the "scripts synchronize" and "commit synchronize
 are used.
 
 # IMPLEMENTATION STEP 2 
